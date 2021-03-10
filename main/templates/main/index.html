@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/superhero/bootstrap.min.css"
+  integrity="sha512-Slx3+m+CsW6eBV9/9EaeSkHUQfieDfx4DmpTxtJIQwE6cwbEUgFsgEXohRIxNej8rWySQwm231R+FVg89hF4Qg=="
+  crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <title>Weather App</title>
+</head>
+
+<body style="background-color: #5DADE2; font-family: 'Roboto', sans-serif;">>
+  <div id="jumbotron" class="jumbotron" style="text-align: center; margin:0px; background-color:#5DADE2; padding: 0;">
+    <h1 class="display-5">Weather App </h1>
+
+    <img src="{% static 'images/weather.png' %}" class="image" style="width:100px; margin-bottom:-50px; ">
+  </div>
+  <br><br><br>
+
+  <nav class="navbar navbar-expand-lg" style="background-color: #5DADE2;">
+    <form method="post" class="col-md"">
+      {% csrf_token %}
+      <div class=" input-group">
+        <input type="text" class="form-control" name="city" placeholder="Choose Your City ...">
+      </div>
+      <br>
+      <div class="input-group-btn">
+        <button type="submit" class="btn" style="background-color: #229954; width: 100%; border-radius: 10px;">Search</button>
+      </div>
+    </form>
+  </nav>
+  <br><br>
+  <div class="row">
+    {% if country_code and coordinate and temp and pressure and humidity %}
+    <div class="col d-flex justify-content-center">
+      <div class=" card text-white mb-6" style="background-color: #A9CCE3;">
+      <div class=" card-body">
+        <h4><span class="badge badge-dark">Country Code :</span> {{city}}</h4>
+        <h4><span class="badge badge-dark">Country Code :</span> {{country_code}}</h4>
+        <h4><span class="badge badge-dark">Coordinates [LON ,LAT ] :</span> {{coordinate}}</h4>
+        <h4><span class="badge badge-dark">Temperature in Celsius :</span> {{temp}}</h4>
+        <h4><span class="badge badge-dark">Pressure :</span> {{pressure}} </h4>
+        <h4><span class="badge badge-dark">Humidity : </span> {{humidity}}</h4>
+        <h4><span class="badge badge-dark">Forecast : </span> {{main}} <img
+            src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+        <h4><span class="badge badge-dark">Description : </span> {{description}}</h4>
+      </div>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+  <footer class="bg-secondary text-center text-white">
+    <div class="text-center p-3 bg-dark" style="position: relative; bottom: 0; width: 100%;">
+    &copy Created by Sushanth M Dak
+  </div>
+</footer>
+</body>
+
+</html>
